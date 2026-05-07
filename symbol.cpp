@@ -36,9 +36,6 @@ void assignLiterals() {
 }
 
 int getLiteralID(string val) {
-    for (int i = 0; i < littab.size(); i++) {
-        if (littab[i].value == val && littab[i].address == -1) return i + 1;
-    }
     littab.push_back({val, -1});
     return littab.size();
 }
