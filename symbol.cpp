@@ -29,14 +29,14 @@ int LC = 0;
 // --- Helper Functions ---
 
 void assignLiterals() {
-    for (size_t i = pooltab.back(); i < littab.size(); i++) {
+    for (int i = pooltab.back(); i < littab.size(); i++) {
         littab[i].address = LC++;
     }
     pooltab.push_back(littab.size());
 }
 
 int getLiteralID(string val) {
-    for (size_t i = 0; i < littab.size(); i++) {
+    for (int i = 0; i < littab.size(); i++) {
         if (littab[i].value == val && littab[i].address == -1) return i + 1;
     }
     littab.push_back({val, -1});
@@ -67,7 +67,7 @@ int main() {
         "END"
     };
 
-    for (size_t i = 0; i < prog.size(); ++i) {
+    for (int i = 0; i < prog.size(); ++i) {
         stringstream ss(prog[i]);
         string word;
         vector<string> parts;
@@ -90,7 +90,7 @@ int main() {
             Opcode op = opt[parts[0]];
             string s = to_string(LC) + " (" + op.type + "," + to_string(op.code) + ")";
 
-            for (size_t j = 1; j < parts.size(); j++) {
+            for (int j = 1; j < parts.size(); j++) {
                 string x = parts[j];
                 if (reg.count(x)) s += " (" + to_string(reg[x]) + ")";
                 else if (cond.count(x)) s += " (" + to_string(cond[x]) + ")";
@@ -112,17 +112,17 @@ int main() {
     }
 
     cout << "\nLITTAB:\n";
-    for (size_t i = 0; i < littab.size(); i++) {
+    for (int i = 0; i < littab.size(); i++) {
         cout << i + 1 << " " << littab[i].value << "\t" << littab[i].address << endl;
     }
 
     cout << "\nPOOLTAB:\n";
-    for (size_t i = 0; i < pooltab.size() - 1; i++) {
+    for (int i = 0; i < pooltab.size() - 1; i++) {
         cout << i + 1 << " #" << pooltab[i] + 1 << endl;
     }
 
     cout << "\nINTERMEDIATE CODE:\n";
-    for (size_t i = 0; i < ic.size(); i++) {
+    for (int i = 0; i < ic.size(); i++) {
         cout << ic[i] << endl;
     }
 
